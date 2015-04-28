@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.roleuserMapper" >
+  <resultMap id="BaseResultMap" type="sy.model.roleuserKey" >
+    <id column="uid" property="uid" jdbcType="VARCHAR" />
+    <id column="rid" property="rid" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="sy.model.roleuserKey" >
+    delete from roleuser
+    where uid = #{uid,jdbcType=VARCHAR}
+      and rid = #{rid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sy.model.roleuserKey" >
+    insert into roleuser (uid, rid)
+    values (#{uid,jdbcType=VARCHAR}, #{rid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="sy.model.roleuserKey" >
+    insert into roleuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
